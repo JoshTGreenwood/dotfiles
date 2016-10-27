@@ -1,7 +1,7 @@
 set nocompatible
+syntax on
 
-" PLUGINS
-"--------------------------------------------------------------------------------
+" plugins {{{
 call plug#begin('~/.vim/plugged')
 " Misc
   Plug 'christoomey/vim-tmux-navigator' " treat vim and tmux splits the same
@@ -28,11 +28,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'digitaltoad/vim-pug'
 call plug#end()
 
-let g:rainbow_active = 1
 xnoremap ga <Plug>(EasyAlign)
-"--------------------------------------------------------------------------------
-
-syntax on
+" }}}
 
 set clipboard=unnamed "use mac clipboard
 
@@ -47,10 +44,6 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 
-" split with vv and ss
-" noremap vv <C-w>v
-" noremap ss <C-w>s
-
 " other
 set nowrap
 set number
@@ -62,12 +55,8 @@ inoremap <c-l> <space>=><space>
 color dracula
 set bg=dark
 
-" exit insert mode with jj
+" exit insert mode with jk
 inoremap jk <Esc>
-
-
-" close quickfix window
-noremap <leader>c :ccl<cr>
 
 " swapfiles
 set swapfile
@@ -77,8 +66,7 @@ set dir=/tmp
 " taken from :help last-position-jump
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Vim Test + Dispatch
-"--------------------------------------------------------------------------------
+" Vim Test + Dispatch {{{
 let test#strategy = "dispatch"
 let g:test#preserve_screen = 1
 nnoremap <silent> <leader>tt :TestNearest<CR>
@@ -87,67 +75,59 @@ nnoremap <silent> <leader>ts :TestSuite<CR>
 nnoremap <silent> <leader>tl :TestLast<CR>
 nnoremap <silent> <leader>tg :TestVisit<CR>
 nnoremap <silent> <leader>m :Dispatch<CR>
-"--------------------------------------------------------------------------------
+" }}}
 
-" fzf
+" fzf {{{
 set rtp+=~/.fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>d :Tags<CR>
 nnoremap <leader>s :Ag<CR>
-let $FZF_DEFAULT_COMMAND = 'ag -l --hidden -g ""'
-" defaultCommand = `find . -path '*/\.*' -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//`
-
-" RSpec promote to let
-"--------------------------------------------------------------------------------
-function! PromoteToLet()
-  ":normal! dd
-  " :exec '?^\s*it\>'
-  ":normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-:noremap <leader>p :PromoteToLet<cr>
-"--------------------------------------------------------------------------------
-
-" neomake
-"--------------------------------------------------------------------------------
-" let g:neomake_open_list = 2
-" autocmd! BufWritePost,BufEnter * Neomake
-"--------------------------------------------------------------------------------
-"
-
-" elm
-au FileType elm nnoremap <leader>m <Plug>(elm-make)
-au FileType elm nnoremap <leader>e <Plug>(elm-error-detail)
-au FileType elm nnoremap <leader>d <Plug>(elm-show-docs)
-let g:elm_make_output_file = "index.html"
+" }}}
 
 " toggles the quickfix window, comes from Plug '907th/vim-qfix'
 nnoremap <leader>q :QFix<CR>
 
-iabbrev pryy require 'pry'; binding.pry
+" filetype specific {{{
+augroup elm
+  autocmd!
+  autocmd FileType elm nnoremap <leader>m <Plug>(elm-make)
+  autocmd FileType elm nnoremap <leader>e <Plug>(elm-error-detail)
+  autocmd FileType elm nnoremap <leader>d <Plug>(elm-show-docs)
+  autocmd FileType elm g:elm_make_output_file = "index.html"
+augroup END
 
-vnoremap ' <esc>`<i'<esc>`>a'<esc>
-noremap H ^
-noremap L $
-
-"open help in vertical split
 augroup helpfiles
   autocmd!
   autocmd FileType help wincmd L
 augroup END
 
-"joshua.t.greenwood@gmail.com"
-onoremap in@ :<c-u>execute "normal!  /[a-zA-Z.]\\+@[a-zA-Z]\\+.com\r:nohl\rgn"<cr>
+augroup ruby
+  autocmd!
+  autocmd FileType ruby iabbrev pryy require 'pry'; binding.pry
+  " RSpec promote to let
+  "--------------------------------------------------------------------------------
+  function! PromoteToLet()
+    ":normal! dd
+    " :exec '?^\s*it\>'
+    ":normal! P
+    :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+    :normal ==
+  endfunction
+  :command! PromoteToLet :call PromoteToLet()
+  :noremap <leader>p :PromoteToLet<cr>
+  "--------------------------------------------------------------------------------
+augroup END
+" }}}
 
+" statusline {{{
 :set statusline=%f         " Path to the file
-:set statusline+=%m         " Path to the file
+:set statusline+=%m        " modified flag
 :set statusline+=%=        " Switch to the right side
 :set statusline+=%l        " Current line
 :set statusline+=/         " Separator
 :set statusline+=%L        " Total lines
+" }}}
 
 " vimrc stuff {{{
 noremap <leader>v :vsplit $MYVIMRC<cr>
@@ -161,5 +141,3 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
-
-" set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
