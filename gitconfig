@@ -1,0 +1,26 @@
+[core]
+  excludesfile = /Users/Josh/.gitignore
+  editor = vim
+[user]
+  email = joshua.t.greenwood@gmail.com
+  name = Josh Greenwood
+[branch]
+  autosetuprebase = always
+[rerere]
+  enabled = true
+[alias]
+  st = status -s
+  aa = add --all
+  cv = commit -v
+  co = checkout
+  fpush = push --force-with-lease
+
+  # diffing
+  d = "!f() { git diff --color $* | diff-so-fancy | less --tabs=4 -RFX; }; f"
+  dc = !git d --cached
+
+  # logging
+  l = "!. ~/.githelpers.sh && pretty_git_log"
+  r = !git l -n 30
+[diff]
+	compactionHeuristic = true
