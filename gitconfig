@@ -12,6 +12,7 @@
   st = status -s
   aa = add --all
   cv = commit -v
+  ca = commit --amend
   co = checkout
   fpush = push --force-with-lease
 
