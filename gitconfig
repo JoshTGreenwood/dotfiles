@@ -1,6 +1,6 @@
 [core]
   excludesfile = /Users/Josh/.gitignore
-  editor = vim
+  editor = vim -c 'startinsert'
 [user]
   email = joshua.t.greenwood@gmail.com
   name = Josh Greenwood
