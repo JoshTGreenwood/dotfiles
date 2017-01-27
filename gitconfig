@@ -26,3 +26,7 @@
   r = !git l -n 30
 [diff]
 	compactionHeuristic = true
+[github]
+	user = joshtgreenwood
+[ghi]
+	token = !security find-internet-password -a joshtgreenwood -s github.com -l 'ghi token' -w
