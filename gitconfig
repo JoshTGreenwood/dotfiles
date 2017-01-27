@@ -13,6 +13,7 @@
   aa = add --all
   cv = commit -v
   ca = commit --amend
+  fix = commit --fixup
   co = checkout
   fpush = push --force-with-lease
 
