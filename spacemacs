@@ -322,6 +322,8 @@ you should place your code here."
   ;; Also in visual mode
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+
+  (setq elm-format-on-save t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
