@@ -324,6 +324,11 @@ you should place your code here."
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
   (setq elm-format-on-save t)
+
+  ;; Make _ a word entry so w,e,b work like they do in vim
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
