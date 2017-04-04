@@ -332,6 +332,10 @@ you should place your code here."
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
+  ;; use 2 space indention in javascript
+  (setq-default js2-basic-offset 2
+                js-indent-level 2)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
