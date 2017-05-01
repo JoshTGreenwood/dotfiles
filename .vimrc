@@ -1,11 +1,12 @@
 set nocompatible
 syntax on
 
-" plugins {{{
+" plugins
 call plug#begin('~/.vim/plugged')
 " Misc
   Plug 'christoomey/vim-tmux-navigator' " treat vim and tmux splits the same
-  Plug 'dracula/vim' " colorscheme
+  " Plug 'dracula/vim' " colorscheme
+  Plug 'altercation/vim-colors-solarized'
   Plug 'janko-m/vim-test' | Plug 'tpope/vim-dispatch' " for running
   Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' " fuzzy finder
   Plug 'tpope/vim-commentary' " comment stuff out with gcc
@@ -29,7 +30,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 xnoremap ga <Plug>(EasyAlign)
-" }}}
+" 
 
 set clipboard=unnamed "use mac clipboard
 
@@ -52,8 +53,8 @@ let mapleader = "\<space>"
 inoremap <c-l> <space>=><space>
 
 " color
-color dracula
-set bg=dark
+set background=dark
+colorscheme solarized
 
 " exit insert mode with jk
 inoremap jk <Esc>
