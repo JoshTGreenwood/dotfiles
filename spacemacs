@@ -321,6 +321,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
   (defun flycheck-list-errors-only-when-errors ()
     (if flycheck-current-errors
         (flycheck-list-errors)
@@ -343,6 +344,8 @@ you should place your code here."
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'ruby-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
   (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+
+  (setq-default elm-format-command "elm-format-0.18")
 
   ;; use 2 space indention everywhere
   (setq-default js2-basic-offset 2
