@@ -24,6 +24,9 @@
   # logging
   l = "!. ~/.githelpers.sh && pretty_git_log"
   r = !git l -n 30
+
+  # list all the recent branches I've worked on
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 [diff]
 	compactionHeuristic = true
 [github]
