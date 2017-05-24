@@ -21,9 +21,13 @@
   d = "!f() { git diff --color $* | diff-so-fancy | less --tabs=4 -RFX; }; f"
   dc = !git d --cached
 
-  # logging
+  # basic logging
   l = "!. ~/.githelpers.sh && pretty_git_log"
   r = !git l -n 30
+
+  # interesting logging
+  me = log --all --oneline --no-merges --author=joshua.t.greenwood@gmail.com
+  today = !git me --since=00:00:00
 
   # list all the recent branches I've worked on
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
