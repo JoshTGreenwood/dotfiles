@@ -28,6 +28,10 @@
   # interesting logging
   me = log --all --oneline --no-merges --author=joshua.t.greenwood@gmail.com
   today = !git me --since=00:00:00
+  # See which commits are on your local branch that aren’t on the remote
+  local = "! git fetch && git log --oneline --no-merges origin/$(git rev-parse --abbrev-ref HEAD).."
+  # See which commits are on the remote that aren’t on your local branch
+  upstream = "! git fetch && git log --oneline --no-merges ..origin/$(git rev-parse --abbrev-ref HEAD)"
 
   # list all the recent branches I've worked on
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
