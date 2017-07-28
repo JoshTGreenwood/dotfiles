@@ -96,3 +96,5 @@ alias elm-format=elm-format-0.18
 
 unalias run-help
 autoload -U run-help
+
+export PATH="$HOME/.yarn/bin:$PATH"
