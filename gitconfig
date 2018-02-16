@@ -1,6 +1,6 @@
 [core]
   excludesfile = /Users/Josh/.gitignore
-  editor = vim -c 'startinsert'
+  editor = "emacsclient -t"
 [user]
   email = joshua.t.greenwood@gmail.com
   name = Josh Greenwood
