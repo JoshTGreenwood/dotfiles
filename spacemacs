@@ -324,7 +324,7 @@ you should place your code here."
     (lambda () (interactive)
       (setq command-to-run (read-string "Set command to run with <SPC>or: "))))
 
-  (setq powerline-default-separator 'utf-8)
+  (setq powerline-default-separator 'arrow)
   (defun flycheck-list-errors-only-when-errors ()
     (if flycheck-current-errors
         (flycheck-list-errors)
