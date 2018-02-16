@@ -31,37 +31,27 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ivy
+     shell-scripts
      elixir
      yaml
-     themes-megapack
-     gtags
      html
      javascript
      ruby
+     ruby-on-rails
      markdown
      elm
-     graphviz
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     restclient
-     helm
      auto-completion
-     better-defaults
      emacs-lisp
      git
      github
      markdown
-     org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil) ;; turn off annoying flycheck tooltips
-     version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -119,6 +109,7 @@ values."
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
+   dotspacemacs-mode-line-theme 'spacemacs
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -142,8 +133,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         sanityinc-solarized-dark)
+   dotspacemacs-themes '(spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -306,7 +296,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'changed
+   dotspacemacs-whitespace-cleanup 'all
    ))
 
 (defun dotspacemacs/user-init ()
@@ -326,6 +316,14 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (evil-leader/set-key "or"
+    (lambda () (interactive)
+      (shell-command command-to-run)))
+
+  (evil-leader/set-key "os"
+    (lambda () (interactive)
+      (setq command-to-run (read-string "Set command to run with <SPC>or: "))))
+
   (setq powerline-default-separator 'utf-8)
   (defun flycheck-list-errors-only-when-errors ()
     (if flycheck-current-errors
@@ -357,6 +355,8 @@ you should place your code here."
                 js-indent-level 2
                 css-indent-offset 2
                 )
+
+  (setq ivy-use-virtual-buffers t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
