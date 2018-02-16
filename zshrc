@@ -98,3 +98,7 @@ unalias run-help
 autoload -U run-help
 
 export PATH="$HOME/.yarn/bin:$PATH"
+eval "$(rbenv init -)"
+
+alias run_circle_failures="circle | grep 'spec/' | cut -f 1 -d ' ' | uniq | xargs bundle exec rspec"
+alias be="bundle exec"
