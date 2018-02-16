@@ -65,7 +65,7 @@ set dir=/tmp
 " taken from :help last-position-jump
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Vim Test + Dispatch {{{
+" Vim Test + Dispatch
 let test#strategy = "dispatch"
 let g:test#preserve_screen = 1
 nnoremap <silent> <leader>tt :TestNearest<CR>
@@ -74,20 +74,18 @@ nnoremap <silent> <leader>ts :TestSuite<CR>
 nnoremap <silent> <leader>tl :TestLast<CR>
 nnoremap <silent> <leader>tg :TestVisit<CR>
 nnoremap <silent> <leader>m :Dispatch<CR>
-" }}}
 
-" fzf {{{
+" fzf
 set rtp+=~/.fzf
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>d :Tags<CR>
 nnoremap <leader>s :Ag<CR>
-" }}}
 
 " toggles the quickfix window, comes from Plug '907th/vim-qfix'
 nnoremap <leader>q :QFix<CR>
 
-" filetype specific {{{
+" filetype specific
 augroup elm
   autocmd!
   autocmd FileType elm nnoremap <leader>m <Plug>(elm-make)
@@ -117,18 +115,16 @@ augroup ruby
   :noremap <leader>p :PromoteToLet<cr>
   "--------------------------------------------------------------------------------
 augroup END
-" }}}
 
-" statusline {{{
+" statusline
 :set statusline=%f         " Path to the file
 :set statusline+=%m        " modified flag
 :set statusline+=%=        " Switch to the right side
 :set statusline+=%l        " Current line
 :set statusline+=/         " Separator
 :set statusline+=%L        " Total lines
-" }}}
 
-" vimrc stuff {{{
+" vimrc stuff
 noremap <leader>v :vsplit $MYVIMRC<cr>
 augroup vimrc
   autocmd!
@@ -139,4 +135,3 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}
