@@ -16,6 +16,7 @@
   can = commit --amend --no-edit
   fix = commit --fixup
   co = checkout
+  cor = "! git checkout $( git recent | selecta)"
   fpush = push --force-with-lease
 
   # diffing
