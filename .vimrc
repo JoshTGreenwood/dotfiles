@@ -5,8 +5,7 @@ syntax on
 call plug#begin('~/.vim/plugged')
 " Misc
   Plug 'christoomey/vim-tmux-navigator' " treat vim and tmux splits the same
-  " Plug 'dracula/vim' " colorscheme
-  Plug 'altercation/vim-colors-solarized'
+  Plug 'colepeters/spacemacs-theme.vim'
   Plug 'janko-m/vim-test' | Plug 'tpope/vim-dispatch' " for running
   Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf' " fuzzy finder
   Plug 'tpope/vim-commentary' " comment stuff out with gcc
@@ -30,7 +29,6 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 xnoremap ga <Plug>(EasyAlign)
-" 
 
 set clipboard=unnamed "use mac clipboard
 
@@ -54,7 +52,7 @@ inoremap <c-l> <space>=><space>
 
 " color
 set background=dark
-colorscheme solarized
+colorscheme spacemacs-theme
 
 " exit insert mode with jk
 inoremap jk <Esc>
