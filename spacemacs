@@ -357,6 +357,11 @@ you should place your code here."
                 )
 
   (setq ivy-use-virtual-buffers t)
+
+  ;; make exunit test buffer behave (I really just want to close it with <ctrl>g)
+  (push '("*alchemist test report*" :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
+
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
