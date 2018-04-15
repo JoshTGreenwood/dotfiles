@@ -35,6 +35,10 @@
   # See which commits are on the remote that aren’t on your local branch
   upstream = "! git fetch && git log --oneline --no-merges ..origin/$(git rev-parse --abbrev-ref HEAD)"
 
+  search-for-occurance-change = "!f() { query=\"$1\"; shift; git log -p -S\"$query\" \"$argv\"; }; f \"$argv\""
+  search = "!f() { query=\"$1\"; shift; git log -p -G\"$query\" \"$argv\"; }; f \"$argv\""
+  search-messages = "!f() { query=\"$1\"; shift; git log --grep=\"$query\" \"$argv\"; }; f \"$argv\""
+
   # list all the recent branches I've worked on
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 [diff]
