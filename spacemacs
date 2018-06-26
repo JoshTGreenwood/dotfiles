@@ -368,6 +368,9 @@ you should place your code here."
 
   (push '("*alchemist mix*" :dedicated t :position bottom :stick t :noselect t) popwin:special-display-config)
 
+  ;; make projectile create test file when it doesn't exist
+  (setq projectile-create-missing-test-files t)
+
 
   )
 
