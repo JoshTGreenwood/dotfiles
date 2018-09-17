@@ -371,7 +371,13 @@ you should place your code here."
   ;; make projectile create test file when it doesn't exist
   (setq projectile-create-missing-test-files t)
 
+  (defun run-server ()
+    "Runs the Emacs server if it is not running"
+    (require 'server)
+    (unless (server-running-p)
+      (server-start)))
 
+  (run-server)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
