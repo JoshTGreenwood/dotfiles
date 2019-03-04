@@ -1,6 +1,6 @@
 [core]
   excludesfile = /Users/Josh/.gitignore
-  editor = "emacsclient -t"
+  editor = "nvim"
 [user]
   email = joshua.t.greenwood@gmail.com
   name = Josh Greenwood
