@@ -1,5 +1,5 @@
 [core]
-  excludesfile = /Users/Josh/.gitignore
+  excludesfile = ~/.gitignore
   editor = "nvim"
 [user]
   email = joshua.t.greenwood@gmail.com
