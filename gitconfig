@@ -44,6 +44,9 @@
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
 [diff]
 	compactionHeuristic = true
+[diff "encrypted"]
+  textconv = rails encrypted:show
+  cachetextconv = false
 [github]
 	user = joshtgreenwood
 [rebase]
