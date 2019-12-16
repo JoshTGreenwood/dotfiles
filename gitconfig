@@ -17,6 +17,7 @@
   fix = commit --fixup
   co = checkout
   cor = "! git checkout $( git recent | selecta)"
+  cop = "! hub pr checkout $( hub pr list | selecta | tr -d '#')"
   fpush = push --force-with-lease
 
   # diffing
