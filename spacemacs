@@ -378,14 +378,37 @@ you should place your code here."
   ;; make projectile create test file when it doesn't exist
   (setq projectile-create-missing-test-files t)
 
-  (defun run-server ()
-    "Runs the Emacs server if it is not running"
-    (require 'server)
-    (unless (server-running-p)
-      (server-start)))
+  ;; fix tern issue
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path '("/usr/local/bin")))
 
-  (run-server)
+  ;; stop inserting # coding: utf-8 in ruby files
+  (setq ruby-insert-encoding-magic-comment nil)
+
+  (define-derived-mode cfn-mode yaml-mode
+    "Cloudformation"
+    "Cloudformation template mode.")
+
+  (add-to-list 'auto-mode-alist '(".template\\'" . cfn-mode))
+  (after! flycheck
+          (flycheck-define-checker cfn-lint
+            "A Cloudformation linter using cfn-python-lint.
+See URL 'https://github.com/awslabs/cfn-python-lint'."
+            :command ("cfn-lint" "-f" "parseable" source)
+            :error-patterns (
+                             (warning line-start (file-name) ":" line ":" column
+                                      ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                                      (id "W" (one-or-more digit)) ":" (message) line-end)
+                             (error line-start (file-name) ":" line ":" column
+                                    ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                                    (id "E" (one-or-more digit)) ":" (message) line-end)
+                             )
+            :modes (cfn-mode)
+            )
+          (add-to-list 'flycheck-checkers 'cfn-lint)
+          )
   )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
