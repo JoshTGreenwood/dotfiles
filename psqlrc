@@ -1,6 +1,13 @@
+-- ~/.psqlrc
+-- don't log this config stuff
 \set QUIET 1
+-- log how long each query takes
 \timing
+-- don't try to print wide tables
 \x auto
+-- display ø for nulls
 \pset null 'ø'
+-- store history in db specific history files
 \set HISTFILE ~/.psql_history- :DBNAME
+-- start logging again
 \unset QUIET
