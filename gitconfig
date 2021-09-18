@@ -16,7 +16,7 @@
   can = commit --amend --no-edit
   fix = commit --fixup
   co = checkout
-  cor = "! git checkout $( git recent | selecta)"
+  cor = "! git checkout $( git recent | fzf)"
   cop = "! hub pr checkout $( hub pr list | selecta | tr -d '#')"
   fpush = push --force-with-lease
 
