@@ -27,6 +27,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'ahmedkhalf/project.nvim'
   Plug 'tpope/vim-surround'
   Plug 'mrjones2014/legendary.nvim'
+  Plug 'echasnovski/mini.nvim'
   Plug 'folke/which-key.nvim'
   Plug 'stevearc/dressing.nvim'
   Plug 'altercation/vim-colors-solarized'
@@ -42,21 +43,18 @@ require("project_nvim").setup { }
 require"gitlinker".setup()
 require('Comment').setup()
 
-require('which-key').register({
-  f = {
-    name = "file",
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    p = { "<cmd>Telescope projects<cr>", "Open Project" },
-    g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-    s = { "<cmd>Telescope grep_string<cr>", "Grep string" },
-  },
-  v = {
-    name = "vim",
-    r = { "<cmd>so ~/.config/nvim/init.vim<cr>", 'Reload init.vim'},
-    e = { "<cmd>e ~/.config/nvim/init.vim<cr>", 'Open init.vim'},
-  },
-}, { prefix = "<leader>" })
+require('which-key').add({
+  { "<leader>f", group = "file" },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+  { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+  { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Open Project" },
+  { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
+  { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep string" },
+
+  { "<leader>v", group = "vim" },
+  { "<leader>vr", "<cmd>so ~/.config/nvim/init.vim<cr>", desc = 'Reload init.vim'},
+  { "<leader>ve", "<cmd>e ~/.config/nvim/init.vim<cr>", desc = 'Open init.vim'},
+})
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
