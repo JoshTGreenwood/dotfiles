@@ -1,9 +1,9 @@
 alias be="bundle exec"
 alias "weather=curl 'http://wttr.in/45227'"
 
-set -x EDITOR vim
+set -x EDITOR nvim
 
-source /usr/local/opt/asdf/libexec/asdf.fish
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
 direnv hook fish | source
 
 # disable spring system wide
