@@ -69,6 +69,15 @@ require'gitlinker'.setup()
 require('Comment').setup()
 require('CopilotChat').setup()
 
+local ask_copilot = function()
+  copilot = require("CopilotChat")
+  copilot.reset()
+
+  local input = vim.fn.input("Question: ")
+
+  copilot.ask(input, { selection = require("CopilotChat.select").visual })
+end
+
 require('which-key').add({
   { "<leader>f", group = "file" },
   { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
@@ -83,6 +92,7 @@ require('which-key').add({
 
   { "<leader>c", group = "copilot" },
   { "<leader>ct", "<cmd>CopilotChatToggle<cr>", desc = "toggle" },
+  { "<leader>cc", ask_copilot, desc = "Ask", mode = 'v' }
 })
 
 -- Remove trailing whitespace on save
