@@ -30,7 +30,7 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'echasnovski/mini.nvim'
   Plug 'folke/which-key.nvim'
   Plug 'stevearc/dressing.nvim'
-  Plug 'altercation/vim-colors-solarized'
+  Plug 'ellisonleao/gruvbox.nvim'
   Plug 'ruifm/gitlinker.nvim'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 	Plug 'numToStr/Comment.nvim'
@@ -64,4 +64,4 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 EOF
 
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
