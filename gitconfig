@@ -17,7 +17,7 @@
   fix = commit --fixup
   co = checkout
   cor = "! git checkout $( git recent | fzf)"
-  cop = "! hub pr checkout $( hub pr list | selecta | tr -d '#')"
+  cop = "! gh pr checkout $( gh pr list --limit 30 | fzf | awk '{print $1}')"
   fpush = push --force-with-lease
 
   # diffing
