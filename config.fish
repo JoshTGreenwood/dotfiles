@@ -3,7 +3,7 @@ alias "weather=curl 'http://wttr.in/45227'"
 
 set -x EDITOR nvim
 
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
+mise activate fish | source
 direnv hook fish | source
 
 # disable spring system wide
